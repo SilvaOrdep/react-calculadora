@@ -1,15 +1,24 @@
 
-function TextArea() {
+import PropTypes from 'prop-types';
+
+function TextArea(  {numroUm, numroDois, simbolo}  ) {
   return (
     <div className="maintext">
       <p className="concatenador">
-        1+1
+        {numroDois}	
       </p>
       <p className="numPrincipal">
-        12
+        {simbolo} {numroUm}
       </p>
     </div>
   )
 }
 
-export default TextArea
+TextArea.propTypes = {
+  numroUm: PropTypes.number.isRequired,
+  numroDois: PropTypes.number.isRequired,
+  simbolo: PropTypes.string.isRequired,
+};
+
+export default TextArea;
+
