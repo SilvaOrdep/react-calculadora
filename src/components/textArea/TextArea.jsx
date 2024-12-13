@@ -1,4 +1,4 @@
-
+import './textAreaStyle.css';
 import PropTypes from 'prop-types';
 
 function TextArea(  {numroUm, numroDois, simbolo}  ) {
