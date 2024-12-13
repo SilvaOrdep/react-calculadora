@@ -68,6 +68,56 @@ function App() {
             text="C"
             onClick={() => console.log("Adicionado")}
           />
+          <Botao
+            color="#2E2E2E"
+            text="C"
+            onClick={() => console.log("Adicionado")}
+          />
+          <Botao
+            color="#2E2E2E"
+            text="C"
+            onClick={() => console.log("Adicionado")}
+          />
+          <Botao
+            color="#2E2E2E"
+            text="C"
+            onClick={() => console.log("Adicionado")}
+          />
+          <Botao
+            color="#2E2E2E"
+            text="C"
+            onClick={() => console.log("Adicionado")}
+          />
+          <Botao
+            color="#2E2E2E"
+            text="C"
+            onClick={() => console.log("Adicionado")}
+          />
+          <Botao
+            color="#2E2E2E"
+            text="C"
+            onClick={() => console.log("Adicionado")}
+          />
+          <Botao
+            color="#2E2E2E"
+            text="C"
+            onClick={() => console.log("Adicionado")}
+          />
+          <Botao
+            color="#2E2E2E"
+            text="C"
+            onClick={() => console.log("Adicionado")}
+          />
+          <Botao
+            color="#2E2E2E"
+            text="C"
+            onClick={() => console.log("Adicionado")}
+          />
+          <Botao
+            color="#2E2E2E"
+            text="C"
+            onClick={() => console.log("Adicionado")}
+          />
         </div>
       </main>
     </>
