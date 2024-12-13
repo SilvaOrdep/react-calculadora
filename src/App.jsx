@@ -25,47 +25,97 @@ function App() {
           />
           <Botao
             color="#2E2E2E"
-            text="C"
+            text="⌫"
             onClick={() => console.log("Adicionado")}
           />
           <Botao
             color="#2E2E2E"
-            text="C"
+            text="%"
             onClick={() => console.log("Adicionado")}
           />
           <Botao
             color="#2E2E2E"
-            text="C"
+            text="/"
             onClick={() => console.log("Adicionado")}
           />
           <Botao
             color="#2E2E2E"
-            text="C"
+            text="7"
             onClick={() => console.log("Adicionado")}
           />
           <Botao
             color="#2E2E2E"
-            text="C"
+            text="8"
             onClick={() => console.log("Adicionado")}
           />
           <Botao
             color="#2E2E2E"
-            text="C"
+            text="9"
             onClick={() => console.log("Adicionado")}
           />
           <Botao
             color="#2E2E2E"
-            text="C"
+            text="X"
             onClick={() => console.log("Adicionado")}
           />
           <Botao
             color="#2E2E2E"
-            text="C"
+            text="4"
             onClick={() => console.log("Adicionado")}
           />
           <Botao
             color="#2E2E2E"
-            text="C"
+            text="5"
+            onClick={() => console.log("Adicionado")}
+          />
+          <Botao
+            color="#2E2E2E"
+            text="6"
+            onClick={() => console.log("Adicionado")}
+          />
+          <Botao
+            color="#2E2E2E"
+            text="-"
+            onClick={() => console.log("Adicionado")}
+          />
+          <Botao
+            color="#2E2E2E"
+            text="1"
+            onClick={() => console.log("Adicionado")}
+          />
+          <Botao
+            color="#2E2E2E"
+            text="2"
+            onClick={() => console.log("Adicionado")}
+          />
+          <Botao
+            color="#2E2E2E"
+            text="3"
+            onClick={() => console.log("Adicionado")}
+          />
+          <Botao
+            color="#2E2E2E"
+            text="+"
+            onClick={() => console.log("Adicionado")}
+          />
+          <Botao
+            color="#2E2E2E"
+            text="±"
+            onClick={() => console.log("Adicionado")}
+          />
+          <Botao
+            color="#2E2E2E"
+            text="0"
+            onClick={() => console.log("Adicionado")}
+          />
+          <Botao
+            color="#2E2E2E"
+            text=","
+            onClick={() => console.log("Adicionado")}
+          />
+          <Botao
+            color="#2E2E2E"
+            text="="
             onClick={() => console.log("Adicionado")}
           />
         </div>

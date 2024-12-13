@@ -14,6 +14,8 @@ main {
   flex-direction: column;
   width: 358px;
   height: 659px;
+  padding: 40px 30px;
+  gap: 20px;
 
   border-radius: 30px;
   border: 2px solid rgba(246, 246, 246, 0.49);
@@ -35,5 +37,9 @@ header {
 
 .buttonsBox {
   height: 100%;
-  flex-grow: 3;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px; 
+  align-content: flex-start;
 }
