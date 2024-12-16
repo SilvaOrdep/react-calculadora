@@ -30,7 +30,7 @@ function App() {
     if (numroUm !== "" && numroDois !== "" && s !== simbolo) {
       setNumroUm(resultado());
       setNumroTres("");
-      setNumroDois(""); 
+      setNumroDois("");
       setSimbolo(s);
     } else if (numroTres !== "") {
       setNumroUm(numroTres);
@@ -79,12 +79,12 @@ function App() {
     } else if (simbolo === "%" && numroDois === "") {
       result = parseFloat(numroUm) / 100;
     } else if (simbolo === "%") {
-      result = (parseFloat(numroUm)/100) * parseFloat(numroDois);
+      result = (parseFloat(numroUm) / 100) * parseFloat(numroDois);
     }
     return result;
   }
 
-    function positivoNegativo() {
+  function positivoNegativo() {
     if (numroTres !== "") {
       let result = parseFloat(numroTres) * -1;
       setNumroTres(result);
@@ -125,6 +125,20 @@ function App() {
     return numero < 0 ? `(${numero})` : numero;
   }
 
+  function adicionarPonto() {
+    if (numroUm === "" && numroDois === "" && simbolo === "") {
+      setNumroUm("0.");
+    } else if (!numroUm.includes(".") && numroDois === "" && simbolo === "") {
+      let num = numroUm + ".";
+      setNumroUm(num);
+    } else if (numroUm !== "" && numroDois === "" && simbolo !== "" && numroTres !== "") {
+      setNumroDois("0.");
+    } else if (!numroDois.includes(".") && simbolo !== "" && numroTres === "") {
+      let num = numroDois + ".";
+      setNumroDois(num);
+    }
+  }
+
   return (
     <>
       <main>
@@ -152,10 +166,14 @@ function App() {
           <Botao color="#2E2E2E" text="2" onClick={() => adcNumero("2")} />
           <Botao color="#2E2E2E" text="3" onClick={() => adcNumero("3")} />
           <Botao color="#2E2E2E" text="+" onClick={() => conta("+")} />
-          <Botao color="#2E2E2E" text="±" onClick={() => positivoNegativo()}/>
+          <Botao color="#2E2E2E" text="±" onClick={() => positivoNegativo()} />
           <Botao color="#2E2E2E" text="0" onClick={() => adcNumero("0")} />
-          <Botao color="#2E2E2E" text="," onClick={() => adcNumero(",")} />
-          <Botao color="#2E2E2E" text="=" onClick={() => setNumroTres(resultado())} />
+          <Botao color="#2E2E2E" text="." onClick={() => adicionarPonto()} />
+          <Botao
+            color="#2E2E2E"
+            text="="
+            onClick={() => setNumroTres(resultado())}
+          />
         </div>
       </main>
     </>
