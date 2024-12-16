@@ -140,6 +140,7 @@ function App() {
     } else if (!numroUm.includes(".") && numroDois === "" && simbolo === "") {
       let num = numroUm + ".";
       setNumroUm(num);
+
     } else if (
       numroUm !== "" &&
       simbolo !== "" &&
@@ -202,6 +203,7 @@ function App() {
             {darkMode ? "🌞" : "🌚"}
           </button>
           
+
         </div>
       </main>
     </>
