@@ -27,21 +27,29 @@ function App() {
   }
 
   function conta(s) {
-    if (numroTres !== "") {
+    if (numroUm !== "" && numroDois !== "" && s !== simbolo) {
+      setNumroUm((result) => {
+        if (simbolo === "+") {
+          result = parseFloat(numroUm) + parseFloat(numroDois);
+        } else if (simbolo === "-") {
+          result = parseFloat(numroUm) - parseFloat(numroDois);
+        } else if (simbolo === "X") {
+          result = parseFloat(numroUm) * parseFloat(numroDois);
+        } else if (simbolo === "/") {
+          result = parseFloat(numroUm) / parseFloat(numroDois);
+        }
+        setNumroTres("");
+        return result;
+      });
+      setNumroDois(""); 
+      setSimbolo(s);
+    } else if (numroTres !== "") {
       setNumroUm(numroTres);
       setNumroDois("");
       setNumroTres("");
       setSimbolo(s);
-    } else if (numroUm !== "" && numroDois !== "") {
-      if (simbolo === "+") {
-        setNumroTres(parseFloat(numroDois) + parseFloat(numroUm));
-      } else if (simbolo === "-") {
-        setNumroTres(parseFloat(numroDois) - parseFloat(numroUm));
-      } else if (simbolo === "X") {
-        setNumroTres(parseFloat(numroDois) * parseFloat(numroUm));
-      } else if (simbolo === "/") {
-        setNumroTres(parseFloat(numroDois) / parseFloat(numroUm));
-      }
+    } else if (numroUm !== "" && numroDois !== "" && simbolo === s) {
+      resultado();
       setSimbolo(s);
     } else {
       setSimbolo(s);
@@ -78,24 +86,48 @@ function App() {
     } else if (simbolo === "/") {
       result = parseFloat(numroUm) / parseFloat(numroDois);
     }
-
     setNumroTres(result);
+  }
+
+    function positivoNegativo() {
+    if (numroTres !== "") {
+      let result = parseFloat(numroTres) * -1;
+      setNumroTres(result);
+    } else if (simbolo === "") {
+      let result = parseFloat(numroUm) * -1;
+      setNumroUm(result);
+    } else {
+      let result = parseFloat(numroDois) * -1;
+      setNumroDois(result);
+    }
   }
 
   function mostrarResultado() {
     if (numroTres !== "") {
-      return numroTres;
+      // Formata o número três para exibir entre parênteses, se negativo
+      return formatarNumero(numroTres);
     } else {
-      let equacao = numroUm + " " + simbolo + " " + numroDois;
+      // Retorna a equação formatada
+      let equacao = `${formatarNumero(numroUm)} ${simbolo} ${formatarNumero(
+        numroDois
+      )}`;
       return equacao;
     }
   }
 
   function mostrarEquacao() {
     if (numroTres !== "") {
-      let equacao = numroUm + " " + simbolo + " " + numroDois;
+      // Mostra a equação completa com valores formatados
+      let equacao = `${formatarNumero(numroUm)} ${simbolo} ${formatarNumero(
+        numroDois
+      )}`;
       return equacao;
     }
+  }
+
+  function formatarNumero(numero) {
+    // Adiciona parênteses apenas para números negativos
+    return numero < 0 ? `(${numero})` : numero;
   }
 
   return (
@@ -125,7 +157,7 @@ function App() {
           <Botao color="#2E2E2E" text="2" onClick={() => adcNumero("2")} />
           <Botao color="#2E2E2E" text="3" onClick={() => adcNumero("3")} />
           <Botao color="#2E2E2E" text="+" onClick={() => conta("+")} />
-          <Botao color="#2E2E2E" text="±" onClick />
+          <Botao color="#2E2E2E" text="±" onClick={() => positivoNegativo()}/>
           <Botao color="#2E2E2E" text="0" onClick={() => adcNumero("0")} />
           <Botao color="#2E2E2E" text="," onClick={() => adcNumero(",")} />
           <Botao color="#2E2E2E" text="=" onClick={() => resultado()} />
