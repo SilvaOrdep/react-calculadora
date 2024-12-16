@@ -28,19 +28,8 @@ function App() {
 
   function conta(s) {
     if (numroUm !== "" && numroDois !== "" && s !== simbolo) {
-      setNumroUm((result) => {
-        if (simbolo === "+") {
-          result = parseFloat(numroUm) + parseFloat(numroDois);
-        } else if (simbolo === "-") {
-          result = parseFloat(numroUm) - parseFloat(numroDois);
-        } else if (simbolo === "X") {
-          result = parseFloat(numroUm) * parseFloat(numroDois);
-        } else if (simbolo === "/") {
-          result = parseFloat(numroUm) / parseFloat(numroDois);
-        }
-        setNumroTres("");
-        return result;
-      });
+      setNumroUm(resultado());
+      setNumroTres("");
       setNumroDois(""); 
       setSimbolo(s);
     } else if (numroTres !== "") {
@@ -49,7 +38,9 @@ function App() {
       setNumroTres("");
       setSimbolo(s);
     } else if (numroUm !== "" && numroDois !== "" && simbolo === s) {
-      resultado();
+      setNumroUm(resultado());
+      setNumroDois("");
+      setNumroTres("");
       setSimbolo(s);
     } else {
       setSimbolo(s);
@@ -85,8 +76,12 @@ function App() {
       result = parseFloat(numroUm) * parseFloat(numroDois);
     } else if (simbolo === "/") {
       result = parseFloat(numroUm) / parseFloat(numroDois);
+    } else if (simbolo === "%" && numroDois === "") {
+      result = parseFloat(numroUm) / 100;
+    } else if (simbolo === "%") {
+      result = (parseFloat(numroUm)/100) * parseFloat(numroDois);
     }
-    setNumroTres(result);
+    return result;
   }
 
     function positivoNegativo() {
@@ -160,7 +155,7 @@ function App() {
           <Botao color="#2E2E2E" text="±" onClick={() => positivoNegativo()}/>
           <Botao color="#2E2E2E" text="0" onClick={() => adcNumero("0")} />
           <Botao color="#2E2E2E" text="," onClick={() => adcNumero(",")} />
-          <Botao color="#2E2E2E" text="=" onClick={() => resultado()} />
+          <Botao color="#2E2E2E" text="=" onClick={() => setNumroTres(resultado())} />
         </div>
       </main>
     </>
