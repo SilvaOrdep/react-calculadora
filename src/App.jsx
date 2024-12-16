@@ -11,6 +11,13 @@ function App() {
   const [numroTres, setNumroTres] = useState("");
   const [simbolo, setSimbolo] = useState("");
 
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    document.body.classList.toggle("dark");
+  };
+
   function adcNumero(n) {
     if (numroTres !== "") {
       setNumroUm(n);
@@ -44,10 +51,11 @@ function App() {
     }
   }
 
-  function limparDoisTres() { 
+  function limparDoisTres() {
     setNumroDois("");
     setNumroTres("");
   }
+
   function limpar() {
     setNumroUm("");
     setNumroDois("");
@@ -132,7 +140,13 @@ function App() {
     } else if (!numroUm.includes(".") && numroDois === "" && simbolo === "") {
       let num = numroUm + ".";
       setNumroUm(num);
-    } else if (numroUm !== "" && simbolo !== "" && numroDois === ""  && numroTres === "") {
+
+    } else if (
+      numroUm !== "" &&
+      simbolo !== "" &&
+      numroDois === "" &&
+      numroTres === ""
+    ) {
       setNumroDois("0.");
     } else if (!numroDois.includes(".") && simbolo !== "" && numroTres === "") {
       let num = numroDois + ".";
@@ -150,31 +164,46 @@ function App() {
           <p className="solucao">{mostrarResultado()}</p>
         </div>
 
-        <div className="buttonsBox flex flex-wrap gap-1.5">
-          <Botao color="#2E2E2E" text="C" onClick={() => limpar()} />
-          <Botao color="#2E2E2E" text="⌫" onClick={() => apagarUltimo()} />
-          <Botao color="#2E2E2E" text="%" onClick={() => conta("%")} />
-          <Botao color="#2E2E2E" text="/" onClick={() => conta("/")} />
-          <Botao color="#2E2E2E" text="7" onClick={() => adcNumero("7")} />
-          <Botao color="#2E2E2E" text="8" onClick={() => adcNumero("8")} />
-          <Botao color="#2E2E2E" text="9" onClick={() => adcNumero("9")} />
-          <Botao color="#2E2E2E" text="X" onClick={() => conta("X")} />
-          <Botao color="#2E2E2E" text="4" onClick={() => adcNumero("4")} />
-          <Botao color="#2E2E2E" text="5" onClick={() => adcNumero("5")} />
-          <Botao color="#2E2E2E" text="6" onClick={() => adcNumero("6")} />
-          <Botao color="#2E2E2E" text="-" onClick={() => conta("-")} />
-          <Botao color="#2E2E2E" text="1" onClick={() => adcNumero("1")} />
-          <Botao color="#2E2E2E" text="2" onClick={() => adcNumero("2")} />
-          <Botao color="#2E2E2E" text="3" onClick={() => adcNumero("3")} />
-          <Botao color="#2E2E2E" text="+" onClick={() => conta("+")} />
-          <Botao color="#2E2E2E" text="±" onClick={() => positivoNegativo()} />
-          <Botao color="#2E2E2E" text="0" onClick={() => adcNumero("0")} />
-          <Botao color="#2E2E2E" text="." onClick={() => adicionarPonto()} />
-          <Botao
-            color="#2E2E2E"
-            text="="
-            onClick={() => setNumroTres(resultado())}
-          />
+        <div className={`${darkMode ? "dark" : ""}`}>
+          <div className="buttonsBox flex flex-wrap gap-1.5">
+            <Botao color="#2E2E2E" text="C" onClick={() => limpar()} />
+            <Botao color="#2E2E2E" text="⌫" onClick={() => apagarUltimo()} />
+            <Botao color="#2E2E2E" text="%" onClick={() => conta("%")} />
+            <Botao color="#2E2E2E" text="/" onClick={() => conta("/")} />
+            <Botao color="#2E2E2E" text="7" onClick={() => adcNumero("7")} />
+            <Botao color="#2E2E2E" text="8" onClick={() => adcNumero("8")} />
+            <Botao color="#2E2E2E" text="9" onClick={() => adcNumero("9")} />
+            <Botao color="#2E2E2E" text="X" onClick={() => conta("X")} />
+            <Botao color="#2E2E2E" text="4" onClick={() => adcNumero("4")} />
+            <Botao color="#2E2E2E" text="5" onClick={() => adcNumero("5")} />
+            <Botao color="#2E2E2E" text="6" onClick={() => adcNumero("6")} />
+            <Botao color="#2E2E2E" text="-" onClick={() => conta("-")} />
+            <Botao color="#2E2E2E" text="1" onClick={() => adcNumero("1")} />
+            <Botao color="#2E2E2E" text="2" onClick={() => adcNumero("2")} />
+            <Botao color="#2E2E2E" text="3" onClick={() => adcNumero("3")} />
+            <Botao color="#2E2E2E" text="+" onClick={() => conta("+")} />
+            <Botao
+              color="#2E2E2E"
+              text="±"
+              onClick={() => positivoNegativo()}
+            />
+            <Botao color="#2E2E2E" text="0" onClick={() => adcNumero("0")} />
+            <Botao color="#2E2E2E" text="." onClick={() => adicionarPonto()} />
+            <Botao
+              color="#2E2E2E"
+              text="="
+              onClick={() => setNumroTres(resultado())}
+            />
+          </div>
+
+          <button
+            className="absolute w-16 bottom-16 right-16 m-2 p-2 bg-neutral-900 dark:bg-white rounded-full text-white dark:text-black"
+            onClick={toggleDarkMode}
+          >
+            {darkMode ? "🌞" : "🌚"}
+          </button>
+          
+
         </div>
       </main>
     </>

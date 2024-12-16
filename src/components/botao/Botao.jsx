@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 function Botao({ color, text, onClick }) {
   return (  
-    <button className='botao' style={{ color: color }} onClick={onClick}>{text}</button>
+    <button className='botao dark:bg-lightGray' style={{ color: color }} onClick={onClick}>{text}</button>
   );
 }
 
