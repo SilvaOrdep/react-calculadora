@@ -29,24 +29,25 @@ function App() {
   function conta(s) {
     if (numroUm !== "" && numroDois !== "" && s !== simbolo) {
       setNumroUm(resultado());
-      setNumroTres("");
-      setNumroDois("");
+      limparDoisTres();
       setSimbolo(s);
     } else if (numroTres !== "") {
       setNumroUm(numroTres);
-      setNumroDois("");
-      setNumroTres("");
+      limparDoisTres();
       setSimbolo(s);
     } else if (numroUm !== "" && numroDois !== "" && simbolo === s) {
       setNumroUm(resultado());
-      setNumroDois("");
-      setNumroTres("");
+      limparDoisTres();
       setSimbolo(s);
     } else {
       setSimbolo(s);
     }
   }
 
+  function limparDoisTres() { 
+    setNumroDois("");
+    setNumroTres("");
+  }
   function limpar() {
     setNumroUm("");
     setNumroDois("");
@@ -131,7 +132,7 @@ function App() {
     } else if (!numroUm.includes(".") && numroDois === "" && simbolo === "") {
       let num = numroUm + ".";
       setNumroUm(num);
-    } else if (numroUm !== "" && numroDois === "" && simbolo !== "" && numroTres !== "") {
+    } else if (numroUm !== "" && simbolo !== "" && numroDois === ""  && numroTres === "") {
       setNumroDois("0.");
     } else if (!numroDois.includes(".") && simbolo !== "" && numroTres === "") {
       let num = numroDois + ".";
