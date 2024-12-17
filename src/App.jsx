@@ -140,7 +140,6 @@ function App() {
     } else if (!numroUm.includes(".") && numroDois === "" && simbolo === "") {
       let num = numroUm + ".";
       setNumroUm(num);
-
     } else if (
       numroUm !== "" &&
       simbolo !== "" &&
@@ -156,12 +155,23 @@ function App() {
 
   return (
     <>
-      <main>
+      <button
+        className="absolute w-16 bottom-16 right-16 m-2 p-2 bg-neutral-900 dark:bg-white rounded-full text-white dark:text-black"
+        onClick={toggleDarkMode}
+      >
+        {darkMode ? "🌞" : "🌚"}
+      </button>
+
+      <main className={`${darkMode ? "dark" : ""}`}>
         <header>config</header>
 
         <div className="displayBox">
-          <p className="equacao">{mostrarEquacao()}</p>
-          <p className="solucao">{mostrarResultado()}</p>
+          <p className="equacao text-base text-end text-gray dark:text-lightGray">
+            {mostrarEquacao()}
+          </p>
+          <p className="solucao text-5xl text-end text-darkGray dark:text-white">
+            {mostrarResultado()}
+          </p>
         </div>
 
         <div className={`${darkMode ? "dark" : ""}`}>
@@ -195,15 +205,6 @@ function App() {
               onClick={() => setNumroTres(resultado())}
             />
           </div>
-
-          <button
-            className="absolute w-16 bottom-16 right-16 m-2 p-2 bg-neutral-900 dark:bg-white rounded-full text-white dark:text-black"
-            onClick={toggleDarkMode}
-          >
-            {darkMode ? "🌞" : "🌚"}
-          </button>
-          
-
         </div>
       </main>
     </>
