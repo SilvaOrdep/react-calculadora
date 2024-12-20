@@ -33,7 +33,17 @@ function App() {
     }
   }
 
+  function removeTrailingDot(num) {
+    const numStr = num.toString();
+    if (numStr.includes('.') && numStr.split('.')[1] === '') {
+      return numStr.split('.')[0];
+    }
+    return num;
+  }
+  
   function conta(s) {
+    setNumroUm(removeTrailingDot(numroUm));
+    
     if (numroUm !== "" && numroDois !== "" && s !== simbolo) {
       setNumroUm(resultado());
       limparDoisTres();
@@ -76,6 +86,7 @@ function App() {
   }
 
   function resultado() {
+    setNumroDois(removeTrailingDot(numroDois));
     let result;
     if (simbolo === "+") {
       result = parseFloat(numroUm) + parseFloat(numroDois);
@@ -120,6 +131,7 @@ function App() {
   }
 
   function mostrarEquacao() {
+    
     if (numroTres !== "") {
       // Mostra a equação completa com valores formatados
       let equacao = `${formatarNumero(numroUm)} ${simbolo} ${formatarNumero(
@@ -135,21 +147,19 @@ function App() {
   }
 
   function adicionarPonto() {
-    if (numroUm === "" && numroDois === "" && simbolo === "") {
+
+    if (numroTres !== "" && !numroTres.toString().includes(".")) {
+      limparDoisTres();
+      setSimbolo("");
+      setNumroUm(numroTres + ".");
+    } else if (numroUm === "" && numroDois === "" && simbolo === "") {
       setNumroUm("0.");
-    } else if (!numroUm.includes(".") && numroDois === "" && simbolo === "") {
-      let num = numroUm + ".";
-      setNumroUm(num);
-    } else if (
-      numroUm !== "" &&
-      simbolo !== "" &&
-      numroDois === "" &&
-      numroTres === ""
-    ) {
+    } else if (!numroUm.toString().includes(".") && numroDois === "" && simbolo === "") {
+      setNumroUm(numroUm + ".");
+    } else if (numroUm !== "" && simbolo !== "" && numroDois === "") {
       setNumroDois("0.");
-    } else if (!numroDois.includes(".") && simbolo !== "" && numroTres === "") {
-      let num = numroDois + ".";
-      setNumroDois(num);
+    } else if (!numroDois.toString().includes(".") && simbolo !== "") {
+      setNumroDois(numroDois + ".");
     }
   }
 
