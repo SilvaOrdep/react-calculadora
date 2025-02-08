@@ -35,15 +35,15 @@ function App() {
 
   function removeTrailingDot(num) {
     const numStr = num.toString();
-    if (numStr.includes('.') && numStr.split('.')[1] === '') {
-      return numStr.split('.')[0];
+    if (numStr.includes(".") && numStr.split(".")[1] === "") {
+      return numStr.split(".")[0];
     }
     return num;
   }
-  
+
   function conta(s) {
     setNumroUm(removeTrailingDot(numroUm));
-    
+
     if (numroUm !== "" && numroDois !== "" && s !== simbolo) {
       setNumroUm(resultado());
       limparDoisTres();
@@ -92,7 +92,7 @@ function App() {
       result = parseFloat(numroUm) + parseFloat(numroDois);
     } else if (simbolo === "-") {
       result = parseFloat(numroUm) - parseFloat(numroDois);
-    } else if (simbolo === "X") {
+    } else if (simbolo === "x") {
       result = parseFloat(numroUm) * parseFloat(numroDois);
     } else if (simbolo === "/") {
       result = parseFloat(numroUm) / parseFloat(numroDois);
@@ -101,7 +101,7 @@ function App() {
     } else if (simbolo === "%") {
       result = (parseFloat(numroUm) / 100) * parseFloat(numroDois);
     }
-    return result;
+    return result >= 1000000000 || result <= -1000000000 ? result.toExponential() : result;
   }
 
   function positivoNegativo() {
@@ -131,7 +131,6 @@ function App() {
   }
 
   function mostrarEquacao() {
-    
     if (numroTres !== "") {
       // Mostra a equação completa com valores formatados
       let equacao = `${formatarNumero(numroUm)} ${simbolo} ${formatarNumero(
@@ -147,14 +146,17 @@ function App() {
   }
 
   function adicionarPonto() {
-
     if (numroTres !== "" && !numroTres.toString().includes(".")) {
       limparDoisTres();
       setSimbolo("");
       setNumroUm(numroTres + ".");
     } else if (numroUm === "" && numroDois === "" && simbolo === "") {
       setNumroUm("0.");
-    } else if (!numroUm.toString().includes(".") && numroDois === "" && simbolo === "") {
+    } else if (
+      !numroUm.toString().includes(".") &&
+      numroDois === "" &&
+      simbolo === ""
+    ) {
       setNumroUm(numroUm + ".");
     } else if (numroUm !== "" && simbolo !== "" && numroDois === "") {
       setNumroDois("0.");
@@ -173,17 +175,18 @@ function App() {
       </button>
 
       <main className={`${darkMode ? "dark" : ""}`}>
-        <header>config</header>
+        <header></header>
 
         <div className="displayBox">
           <p className="equacao text-base text-end text-gray dark:text-lightGray">
             {mostrarEquacao()}
           </p>
           <p className="solucao text-5xl text-end text-darkGray dark:text-white">
-            {mostrarResultado()}
+            <span className="clip-left">
+              <span>{mostrarResultado()}</span>
+            </span>
           </p>
         </div>
-
         <div className={`${darkMode ? "dark" : ""}`}>
           <div className="buttonsBox flex flex-wrap gap-1.5">
             <Botao color="#2E2E2E" text="C" onClick={() => limpar()} />
@@ -193,7 +196,7 @@ function App() {
             <Botao color="#2E2E2E" text="7" onClick={() => adcNumero("7")} />
             <Botao color="#2E2E2E" text="8" onClick={() => adcNumero("8")} />
             <Botao color="#2E2E2E" text="9" onClick={() => adcNumero("9")} />
-            <Botao color="#2E2E2E" text="X" onClick={() => conta("X")} />
+            <Botao color="#2E2E2E" text="X" onClick={() => conta("x")} />
             <Botao color="#2E2E2E" text="4" onClick={() => adcNumero("4")} />
             <Botao color="#2E2E2E" text="5" onClick={() => adcNumero("5")} />
             <Botao color="#2E2E2E" text="6" onClick={() => adcNumero("6")} />

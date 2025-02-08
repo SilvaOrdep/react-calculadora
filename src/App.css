@@ -54,3 +54,17 @@ header {
   align-items: start;
   height: 70px;
 }
+
+.clip-left {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  direction: rtl;
+  text-overflow: clip;
+}
+
+.clip-left span {
+  display: inline-block;
+  direction: ltr;
+}
