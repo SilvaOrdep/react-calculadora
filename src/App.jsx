@@ -208,7 +208,7 @@ function App() {
       <main className={`${darkMode ? "dark" : ""}`}>
         <header>
           <button
-            className="botaoDark w-16 bottom-16 right-16 m-2 p-2 bg-neutral-900 dark:bg-white rounded-full text-white dark:text-black"
+            className="botaoDark w-16 bottom-16 right-16 m-2 p-2 bg-cinza dark:bg-lightGray rounded-full text-black dark:text-black"
             onClick={toggleDarkMode}
           >
             {darkMode ? <i className="bi bi-lightbulb-fill"></i> : <i className="bi bi-lightbulb"></i> }

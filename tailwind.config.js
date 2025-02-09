@@ -11,6 +11,7 @@ export default {
         darkGray: "#2E2E2E",
         gray: "#6d6d6d",
         white: "#f6f6f6",
+        cinza: "rgba(109, 109, 109, 0.5)",
       }
     },
   },
