@@ -11,6 +11,10 @@ node_modules
 dist
 dist-ssr
 *.local
+*.json
+eslint.config.js
+postcss.config.js
+
 
 # Editor directories and files
 .vscode/*

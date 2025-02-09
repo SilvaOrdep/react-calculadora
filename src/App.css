@@ -26,7 +26,7 @@ main {
   justify-content: space-between;
   width: 358px;
   height: 659px;
-  padding: 60px 30px 40px 30px;
+  padding: 30px 30px 40px 30px;
 
   border-radius: 30px;
   border: 2px solid rgba(246, 246, 246, 0.49);
@@ -53,6 +53,7 @@ header {
   display: flex;
   align-items: start;
   height: 70px;
+  
 }
 
 .clip-left {
@@ -67,4 +68,8 @@ header {
 .clip-left span {
   display: inline-block;
   direction: ltr;
+}
+.botaoDark {
+  border-radius: 15px;
+  width: 40px;
 }

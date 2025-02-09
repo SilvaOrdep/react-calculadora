@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import "./App.css";
-
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import Botao from "./components/botao/Botao";
 // import TextArea from "./components/TextArea/TextArea";
 
@@ -42,6 +42,7 @@ function App() {
   }
 
   function conta(s) {
+    if (numroUm === "") return;
     setNumroUm(removeTrailingDot(numroUm));
 
     if (numroUm !== "" && numroDois !== "" && s !== simbolo) {
@@ -86,34 +87,71 @@ function App() {
   }
 
   function resultado() {
-    setNumroDois(removeTrailingDot(numroDois));
     let result;
-    if (simbolo === "+") {
-      result = parseFloat(numroUm) + parseFloat(numroDois);
-    } else if (simbolo === "-") {
-      result = parseFloat(numroUm) - parseFloat(numroDois);
-    } else if (simbolo === "x") {
-      result = parseFloat(numroUm) * parseFloat(numroDois);
-    } else if (simbolo === "/") {
-      result = parseFloat(numroUm) / parseFloat(numroDois);
-    } else if (simbolo === "%" && numroDois === "") {
-      result = parseFloat(numroUm) / 100;
-    } else if (simbolo === "%") {
-      result = (parseFloat(numroUm) / 100) * parseFloat(numroDois);
+    if (numroDois === "") {
+      // Se for porcentagem, calcula numroUm/100
+      if (simbolo === "%") {
+        result = parseFloat(numroUm) / 100;
+      } else {
+        // Se não houver numroDois, retorna numroUm sem alterar
+        return numroUm;
+      }
+    } else {
+      // Remove ponto flutuante redundante antes de calcular
+      setNumroDois(removeTrailingDot(numroDois));
+      if (simbolo === "+") {
+        result = parseFloat(numroUm) + parseFloat(numroDois);
+      } else if (simbolo === "-") {
+        result = parseFloat(numroUm) - parseFloat(numroDois);
+      } else if (simbolo === "x") {
+        result = parseFloat(numroUm) * parseFloat(numroDois);
+      } else if (simbolo === "/") {
+        result = parseFloat(numroUm) / parseFloat(numroDois);
+        if (result.toString().split(".")[1]?.length >= 10) {
+          return result.toExponential();
+        }
+      } else if (simbolo === "%" && numroDois !== "") {
+        result = (parseFloat(numroUm) / 100) * parseFloat(numroDois);
+      }
     }
-    return result >= 1000000000 || result <= -1000000000 ? result.toExponential() : result;
+
+    result = parseFloat(result.toFixed(10));
+
+    return result >= 1000000000 || result <= -1000000000
+      ? result.toExponential()
+      : result;
   }
 
   function positivoNegativo() {
+    const flipSign = (n) => {
+      let str = n.toString();
+      // Se já estiver em notação científica, apenas adiciona ou remove o sinal
+      if (str.includes("e")) {
+        return str.startsWith("-") ? str.slice(1) : "-" + str;
+      }
+      let num = parseFloat(n);
+      if (isNaN(num)) return n;
+      num *= -1;
+      // Se o número excede os limites, formata para notação científica
+      if (
+        Math.abs(num) >= 1000000000 ||
+        (Math.abs(num) < 0.0001 && num !== 0)
+      ) {
+        return num.toExponential();
+      }
+      return num.toString();
+    };
+
     if (numroTres !== "") {
-      let result = parseFloat(numroTres) * -1;
-      setNumroTres(result);
+      setNumroTres(flipSign(numroTres));
     } else if (simbolo === "") {
-      let result = parseFloat(numroUm) * -1;
-      setNumroUm(result);
+      if (numroUm !== "") {
+        setNumroUm(flipSign(numroUm));
+      }
     } else {
-      let result = parseFloat(numroDois) * -1;
-      setNumroDois(result);
+      if (numroDois !== "") {
+        setNumroDois(flipSign(numroDois));
+      }
     }
   }
 
@@ -167,15 +205,16 @@ function App() {
 
   return (
     <>
-      <button
-        className="absolute w-16 bottom-16 right-16 m-2 p-2 bg-neutral-900 dark:bg-white rounded-full text-white dark:text-black"
-        onClick={toggleDarkMode}
-      >
-        {darkMode ? "🌞" : "🌚"}
-      </button>
-
       <main className={`${darkMode ? "dark" : ""}`}>
-        <header></header>
+        <header>
+          <button
+            className="botaoDark w-16 bottom-16 right-16 m-2 p-2 bg-neutral-900 dark:bg-white rounded-full text-white dark:text-black"
+            onClick={toggleDarkMode}
+          >
+            {darkMode ? <i className="bi bi-lightbulb-fill"></i> : <i className="bi bi-lightbulb"></i> }
+            
+          </button>
+        </header>
 
         <div className="displayBox">
           <p className="equacao text-base text-end text-gray dark:text-lightGray">
